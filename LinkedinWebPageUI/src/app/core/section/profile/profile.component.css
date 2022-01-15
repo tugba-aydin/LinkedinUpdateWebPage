@@ -1,0 +1,36 @@
+#profile{
+    position: fixed; 
+    top:-40px; 
+    width: 60%; 
+    height: 80%;  
+    margin: auto; 
+    transform: translateY(25%); 
+    padding: 15px; 
+    z-index: 12; 
+    overflow: scroll;
+}
+
+#contact{
+    position: fixed; 
+    top:-40px; 
+    width: 40%; 
+    height: 50%;  
+    margin: auto; 
+    transform: translateY(25%); 
+    padding: 15px; 
+    z-index: 12; 
+    margin-left: 8em;
+}
+
+#editContact{
+    position: fixed; 
+    top:-40px; 
+    width: 50%; 
+    height: 50%;  
+    margin: auto; 
+    transform: translateY(25%); 
+    padding: 15px; 
+    z-index: 12; 
+    margin-left: 5em;
+    overflow: scroll;
+}

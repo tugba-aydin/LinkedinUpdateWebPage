@@ -1,0 +1,36 @@
+<section class="about">
+  <div class="card my-3">
+    <div class="container mt-4 ml-2">
+      <div class="row mt-3 mb-4">
+        <div class="col-11">
+          <h5>Hakkında</h5>
+          <span *ngIf="about">{{about.aboutMe}}</span><br>
+        </div>
+        <div class="col-1"><span (click)="openAboutModal()"><i class="far fa-edit"></i></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="modal show fade d-block mt-4" *ngIf="aboutModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="about">
+      <div class="modal-header">
+        <h5>Hakkında Kısmını Düzenle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeAboutModal()"></button>
+      </div>
+      <form [formGroup]="editAboutForms">
+        <div class="container">
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Deneyim süreniz, sektörünüz ve yeteneklerinizden
+              bahsedebilirsiniz. Diğer kişiler ayrıca başarılarına veya önceki iş tecrübelerine de değinir.</label>
+            <textarea class="form-control form-control-sm" rows="6" formControlName="aboutMe"
+              aria-label=".form-control-sm example"></textarea>
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-info" data-bs-dismiss="modal" (click)="updateAbout()">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>

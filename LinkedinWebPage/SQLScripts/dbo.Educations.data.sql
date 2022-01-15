@@ -1,0 +1,6 @@
+SET IDENTITY_INSERT [dbo].[Educations] ON
+INSERT INTO [dbo].[Educations] ([Id], [SchoolName], [Degree], [Department], [StartDate], [EndDate], [Note], [ActivitiesandCommunities], [Explanation], [UserId]) VALUES (1, N'Karabük Üniversitesi', N'Lisans', N'Bilgisayar Mühendisliği', N'2016-10-16 00:00:00', N'2021-06-30 00:00:00', N'2.95', NULL, NULL, 1)
+INSERT INTO [dbo].[Educations] ([Id], [SchoolName], [Degree], [Department], [StartDate], [EndDate], [Note], [ActivitiesandCommunities], [Explanation], [UserId]) VALUES (2, N'Sivas Cumhuriyet Üniversitesi', N'Önlisans', N'Bilgisayar Programcılığı', N'2013-09-20 00:00:00', N'2015-06-22 00:00:00', N'3.19', NULL, NULL, 1)
+INSERT INTO [dbo].[Educations] ([Id], [SchoolName], [Degree], [Department], [StartDate], [EndDate], [Note], [ActivitiesandCommunities], [Explanation], [UserId]) VALUES (1003, N'Sivas Cumhuriyet Üniversitesi', N'Önlisans', N'Bilgisayar Programcılığı', N'2013-09-15 00:00:00', N'2015-06-22 00:00:00', N'3.25', N'', N'', 2)
+INSERT INTO [dbo].[Educations] ([Id], [SchoolName], [Degree], [Department], [StartDate], [EndDate], [Note], [ActivitiesandCommunities], [Explanation], [UserId]) VALUES (1004, N'Atatürk Üniversitesi', N'Lisans', N'Yönetim Bilişim Sistemleri', N'2022-02-06 00:00:00', N'2022-03-07 00:00:00', N'3.00', N'', N'', 2)
+SET IDENTITY_INSERT [dbo].[Educations] OFF

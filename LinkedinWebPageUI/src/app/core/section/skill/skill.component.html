@@ -1,0 +1,49 @@
+<section class="skill">
+  <div class="card my-3">
+    <div class="container mt-4 ml-2">
+      <div class="row">
+        <div class="col-10">
+          <h5>Yetenekler</h5>
+        </div>
+        <div class="col-2">
+         <span (click)="openSkillModal()"><i class="fas fa-plus" style="margin-left:35px"></i></span> 
+         <span (click)="navigateEditSkill()"><i class="far fa-edit" style="margin-left:20px"></i></span> 
+        </div>
+      </div>
+      <div *ngFor="let sk of skills" class="row mt-3 mb-3">
+        <div class="col-12">
+          <div style="width: 49rem;">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <i class="fas fa-clipboard-check"></i>  {{sk.skillName}}
+                <hr>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="modal show fade d-block mt-4" *ngIf="skillModal" >
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content" id="skill" >
+
+      <div class="modal-header">
+        <h5>Yetenek Ekle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeSkillModal()"></button>
+      </div>
+      <form [formGroup]="skillForm">
+        <div class="container" >
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Yetenek</label>
+            <input class="form-control form-control-sm" type="text" formControlName="skillName" aria-label=".form-control-sm example">
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-info" data-bs-dismiss="modal" (click)="addNewSkill()">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>

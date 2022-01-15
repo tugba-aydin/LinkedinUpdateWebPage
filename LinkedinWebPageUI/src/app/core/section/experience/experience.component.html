@@ -1,0 +1,89 @@
+<section class="experience" *ngIf="experiences">
+  <div class="card my-3">
+    <div class="container mt-4 ml-2">
+      <div class="row">
+        <div class="col-10">
+          <h5>Deneyim</h5>
+        </div>
+        <div class="col-2">
+          <span (click)="openExperienceModal()"><i class="fas fa-plus" style="margin-left:35px"></i></span>
+          <span (click)="navigateEditExperience()"><i class="far fa-edit" style="margin-left:20px"></i></span>
+        </div>
+      </div>
+      <div *ngFor="let ex of experiences" class="row mt-3 mb-3">
+        <div class="col-12">
+          <div style="width: 49rem;">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <i class="far fa-building" style="margin-right: 5px;"></i>{{ex.experienceTitle}}<br>
+                <span>{{ex.companyName}}-{{ex.employmentType}}</span><br>
+                <span>{{ex.location}}</span>
+                <hr>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="modal show fade d-block mt-4" *ngIf="experienceModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="experience">
+
+      <div class="modal-header">
+        <h5>Deneyim Ekle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeExperienceModal()"></button>
+      </div>
+      <form [formGroup]="addExperienceForms">
+        <div class="container">
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Başlık</label>
+            <input class="form-control form-control-sm" type="text" formControlName="experienceTitle" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">İstihdam Türü</label>
+            <select class="form-select form-select-sm" formControlName="employmentType" aria-label=".form-select-sm example">
+              <option selected>Lütfen Seçiniz</option>
+              <option value="Tam Zamanlı">Tam Zamanlı</option>
+              <option value="Yarı Zamanlı">Yarı Zamanlı</option>
+              <option value="Kendi İşim">Kendi İşim</option>
+              <option value="Serbest Çalışan">Serbest Çalışan</option>
+              <option value="Sözleşmeli">Sözleşmeli</option>
+              <option value="Stajyer">Stajyer</option>
+              <option value="Çırak">Çırak</option>
+              <option value="Seasonal">Seasonal</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Şirket Adı</label>
+            <input class="form-control form-control-sm" type="text" formControlName="companyName" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Konum</label>
+            <input class="form-control form-control-sm" type="text" formControlName="location" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Başlangıç Tarihi</label>
+            <input class="form-control form-control-sm" type="date" formControlName="startDate" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Bitiş Tarihi</label>
+            <input class="form-control form-control-sm" type="date" formControlName="endDate" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Sektör</label>
+            <textarea class="form-control form-control-sm" rows="3" formControlName="sector" aria-label=".form-control-sm example"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Açıklama</label>
+            <textarea class="form-control form-control-sm" rows="5" formControlName="explanation" aria-label=".form-control-sm example"></textarea>
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-info" data-bs-dismiss="modal" (click)="addNewExperience()">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>

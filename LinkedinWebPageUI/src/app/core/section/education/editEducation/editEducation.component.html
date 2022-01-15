@@ -1,0 +1,84 @@
+<main class="container">
+  <div class="row">
+    <div class="col-9">
+      <section class="education">
+        <div class="card  my-3">
+          <div class="container mt-4 ml-2">
+            <div class="row">
+              <div class="col-10">
+                <h5>Eğitim</h5>
+              </div>
+            </div>
+            <div *ngFor="let ed of educations" class="row mt-3 mb-3">
+              <div class="col-11">
+                <div class="" style="width: 49rem;">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="fas fa-university"></i> {{ed.schoolName}}<br>
+                      <span>{{ed.degree}}-{{ed.department}}</span> <br>
+                      <span>{{ed.note}}</span>
+                      <hr></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-1 mt-3">
+                <span (click)="openSubEducationModal(ed.id)"><i class="far fa-edit"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</main>
+<div class="modal show fade d-block mt-4" *ngIf="educationModal" >
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content" id="education" >
+
+      <div class="modal-header">
+        <h5>Eğitimi Düzenle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeSubEducationModal()"></button>
+      </div>
+      <form [formGroup]="editEducationForms">
+        <div class="container" >
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Okul</label>
+            <input class="form-control form-control-sm" type="text" formControlName="schoolName" [(ngModel)]="editEducationByIdModel.schoolName" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Derece</label>
+            <input class="form-control form-control-sm" type="text" formControlName="degree" [(ngModel)]="editEducationByIdModel.degree" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Bölüm</label>
+            <input class="form-control form-control-sm" type="text"  formControlName="department" [(ngModel)]="editEducationByIdModel.department" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Başlangıç Tarihi</label>
+            <input class="form-control form-control-sm" type="date" formControlName="startDate"  [ngModel]="editEducationByIdModel.startDate| date:'yyyy-MM-dd'" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Bitiş Tarihi</label>
+            <input class="form-control form-control-sm" type="date" formControlName="endDate" [ngModel]="editEducationByIdModel.endDate| date:'yyyy-MM-dd'" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Not</label>
+            <input class="form-control form-control-sm" type="text" formControlName="note" [(ngModel)]="editEducationByIdModel.note" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Faaliyetler ve Topluluklar</label>
+            <textarea class="form-control form-control-sm" rows="3" formControlName="activitiesandCommunities" [(ngModel)]="editEducationByIdModel.activitiesandCommunities" aria-label=".form-control-sm example"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Açıklama</label>
+            <textarea class="form-control form-control-sm" rows="5" formControlName="explanation" [(ngModel)]="editEducationByIdModel.explanation" aria-label=".form-control-sm example"></textarea>
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-info" data-bs-dismiss="modal" (click)="editedEducationForms()">Kaydet</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteEducation(editEducationByIdModel.id)">Eğitimi Sil</button>
+      </div>
+    </div>
+  </div>
+</div>

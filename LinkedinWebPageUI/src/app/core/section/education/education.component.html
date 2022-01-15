@@ -1,0 +1,78 @@
+<section class="education" *ngIf="educations">
+  <div class="card  my-3">
+    <div class="container mt-4 ml-2">
+      <div class="row">
+        <div class="col-10">
+          <h5>Eğitim</h5>
+        </div>
+        <div class="col-2">
+         <span (click)="openEducationModal()"><i class="fas fa-plus" style="margin-left:35px"></i></span> 
+          <span (click)="navigateEditEducation()"><i class="far fa-edit" style="margin-left:20px"></i></span>
+        </div>
+      </div>
+      <div *ngFor="let ed of educations" class="row mt-3 mb-3">
+        <div class="col-12">
+          <div style="width: 49rem;">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><i class="fas fa-university"></i> {{ed.schoolName}}<br>
+                <span>{{ed.degree}}-{{ed.department}}</span> <br>
+                <span>{{ed.note}}</span>
+                <hr>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="modal show fade d-block mt-4" *ngIf="educationModal" >
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content" id="education" >
+
+      <div class="modal-header">
+        <h5>Eğitim Ekle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeEducationModal()"></button>
+      </div>
+      <form [formGroup]="addEducationForms">
+        <div class="container" >
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Okul</label>
+            <input class="form-control form-control-sm" type="text" formControlName="schoolName" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Derece</label>
+            <input class="form-control form-control-sm" type="text" formControlName="degree" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Bölüm</label>
+            <input class="form-control form-control-sm" type="text"  formControlName="department" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Başlangıç Tarihi</label>
+            <input class="form-control form-control-sm" type="date" formControlName="startDate" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Bitiş Tarihi</label>
+            <input class="form-control form-control-sm" type="date" formControlName="endDate" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Not</label>
+            <input class="form-control form-control-sm" type="text" formControlName="note" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Faaliyetler ve Topluluklar</label>
+            <textarea class="form-control form-control-sm" rows="3" formControlName="activitiesandCommunities" aria-label=".form-control-sm example"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Açıklama</label>
+            <textarea class="form-control form-control-sm" rows="5" formControlName="explanation" aria-label=".form-control-sm example"></textarea>
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-info" data-bs-dismiss="modal" (click)="addedEducation()">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>

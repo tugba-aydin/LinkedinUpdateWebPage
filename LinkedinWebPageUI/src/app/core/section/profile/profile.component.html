@@ -1,0 +1,152 @@
+<section class="profile" *ngIf="profile">
+  <div class="card my-3">
+    <img
+      src="https://image.freepik.com/free-photo/hand-painted-watercolor-background-with-sky-clouds-shape_24972-1095.jpg"
+      width="100px" height="175px" class="card-img-top" alt="...">
+    <img [src]="profile.photo" class="rounded-circle" alt="" width="175" height="175"
+      style="position:absolute; margin-left: 15px; bottom: 150px;">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-11"> </div>
+        <div class="col-1"><span (click)="openIntroductionModal()"><i class="far fa-edit"
+              style="margin-left:15px"></i></span></div>
+      </div>
+      <div class="row pt-5">
+        <div class="col-9">
+          <span class="d-block">
+            <h5>{{profile.name}} {{profile.surname}}</h5>
+          </span>
+          <span class="d-block">{{profile.position}}</span>
+          <span class="d-block">{{profile.country}},{{profile.city}}</span>
+          <span class="d-block" style="color: blue;" (click)="openContactModal()">İletişim Bilgileri</span>
+        </div>
+        <div class="col-3">
+          <div *ngIf="education"><i class="fas fa-university" style="margin-right: 5px;"></i>{{education.schoolName}}
+          </div><br>
+          <div *ngIf="experience"><i class="far fa-building" style="margin-right: 5px;"></i>{{experience.companyName}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal show fade d-block mt-4" *ngIf="introductionModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="profile">
+
+      <div class="modal-header">
+        <h5>Tanıtımı Düzenle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeIntroductionModal()"></button>
+      </div>
+      <form [formGroup]="profileForm">
+        <div class="container">
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Ad</label>
+            <input class="form-control form-control-sm" type="text" formControlName="name" [(ngModel)]="profile.name" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Soyad</label>
+            <input class="form-control form-control-sm" type="text" formControlName="surname" [(ngModel)]="profile.surname" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Pozisyon</label>
+            <select class="form-select form-select-sm" formControlName="position" [(ngModel)]="profile.position" aria-label=".form-select-sm example">
+              <option (value)="profile.position">{{profile.position}}</option>
+            </select>
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Sektör</label>
+            <input class="form-control form-control-sm" type="text" formControlName="sector" [(ngModel)]="experience.sector" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Ülke</label>
+            <input class="form-control form-control-sm" type="text" formControlName="country" [(ngModel)]="profile.country" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">İl</label>
+            <input class="form-control form-control-sm" type="text" formControlName="city" [(ngModel)]="profile.city" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Fotoğraf</label><br>
+            <input type="file" id="myFile" name="filename" (change)="onFileSelect($event)" formControlName="photo">
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-info" data-bs-dismiss="modal" (click)="updateUser()">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal show fade d-block mt-4" *ngIf="contactModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="contact">
+
+      <div class="modal-header">
+        <h5>Tuğba Aydın</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeContactModal()"></button>
+      </div>
+      <form>
+        <div class="container">
+          <div class="mb-3 mt-3">
+            <div class="row">
+              <div class="col-11">
+              <h5>İletişim Bilgileri</h5>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      <i class="far fa-address-book" style="margin-right: 5px;"></i><span>{{profile.emailAddress}}</span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="far fa-address-book" style="margin-right: 5px;"></i><span>{{contact[0].birthday| date: 'dd/MM/yyyy'}}</span>
+                    </li>
+                  </ul>
+              </div>
+              <div class="col-1"><span (click)="openEditContactModal()"><i class="far fa-edit" style="margin-left:15px"></i></span></div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal show fade d-block mt-4" *ngIf="editContactModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="editContact">
+
+      <div class="modal-header">
+        <h5>Formu Düzenle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeEditContactModal()"></button>
+      </div>
+      <form [formGroup]="contactForm">
+        <div class="container">
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Telefon</label>
+            <input class="form-control form-control-sm" type="text" formControlName="phoneNumber" aria-label=".form-control-sm example">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Telefon Türü</label>
+            <select class="form-select form-select-sm" formControlName="phoneNumberType" aria-label=".form-select-sm example">
+              <option selected>Lütfen Seçiniz</option>
+              <option value="Ev">Ev</option>
+              <option value="İş">İş</option>
+              <option value="Mobil">Mobil</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Adres</label>
+            <textarea class="form-control form-control-sm" rows="3" formControlName="address" aria-label=".form-control-sm example"></textarea>
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Doğum Günü</label>
+            <input class="form-control form-control-sm" type="date" formControlName="birthday" [ngModel]="contact[0].birthday| date: 'dd/MM/yyyy'" aria-label=".form-control-sm example">
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-info" data-bs-dismiss="modal" (click)="updateContact()">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>
